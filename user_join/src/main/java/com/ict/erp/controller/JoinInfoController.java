@@ -55,12 +55,11 @@ public class JoinInfoController {
 	}
 	
 	//delete
-	@RequestMapping(value="/deleteinfo/{jiNum}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/deleteinfo",method=RequestMethod.DELETE)
 	@ResponseBody
-	public String  deleteJoinInfo(@PathVariable int jiNum) {
+	public String deleteJoinInfo(@PathVariable int jiNum) {
 		return jis.deleteJoinInfo(jiNum)+"";
 	}
-	
 	
 //	sign up&in	//
 	

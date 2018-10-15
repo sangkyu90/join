@@ -17,8 +17,8 @@
         </div>
         <div class="footer-right d-flex align-items-center">
           <span class="tx-uppercase mg-r-10">Share:</span>
-		  <a target="_blank" class="pd-x-5" href="http://github.com/jms823"><i class="fa fa-git tx-30"></i></a>
-          <a target="_blank" class="pd-x-5" href="http://github.com/jms823"><i class="fa fa-github tx-30"></i></a>
+		  <a target="_blank" class="pd-x-5" href="https://github.com/sangkyu90/join"><i class="fa fa-git tx-30"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://github.com/sangkyu90/join"><i class="fa fa-github tx-30"></i></a>
         </div>
       </footer>
 </body>

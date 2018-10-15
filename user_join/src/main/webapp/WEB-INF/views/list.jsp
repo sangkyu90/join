@@ -20,6 +20,7 @@
   <style>
   	#datatable2 .tableHead {text-align:center !important;}
   	th.no-arrow {background:none !important;}
+  	table tbody tr:hover {background:#F5F5F5;}
   	table thead .no-arrow:before {content:none !important;width:0 !important;height:0 !important;}
   	table thead .no-arrow:after {content:none !important;width:0 !important;height:0 !important;}
   	
