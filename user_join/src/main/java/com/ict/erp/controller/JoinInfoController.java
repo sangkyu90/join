@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ict.erp.service.JoinInfoService;
 import com.ict.erp.vo.JoinInfo;
-import com.ict.erp.vo.JoinInfo2;
 
 @Controller
 public class JoinInfoController {
@@ -49,7 +48,7 @@ public class JoinInfoController {
 	//update
 	@RequestMapping(value="/joininfo/{jiNum}",method=RequestMethod.PUT)
 	@ResponseBody
-	public Integer updateJoinInfo(@RequestBody JoinInfo2 ji,@PathVariable Integer jiNum) {
+	public Integer updateJoinInfo(@RequestBody JoinInfo ji,@PathVariable Integer jiNum) {
 		ji.setJiNum(jiNum);
 		return jis.updateJoinInfo(ji);
 	}
@@ -68,9 +67,6 @@ public class JoinInfoController {
 	@RequestMapping(value="/signup",method=RequestMethod.POST)
 	@ResponseBody 
 	public Integer insertJoinInfo(@RequestBody JoinInfo ji) {
-		ji.setJiBirth(ji.getJiBirth1(),ji.getJiBirth2(),ji.getJiBirth3());
-		ji.setJiMobile(ji.getJiMobile1(), ji.getJiMobile2(), ji.getJiMobile3());
-		System.out.println(ji);
 		return jis.insertJoinInfo(ji);
 	}
 	

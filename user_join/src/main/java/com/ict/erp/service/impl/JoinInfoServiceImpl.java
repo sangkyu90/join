@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.ict.erp.dao.JoinInfoDAO;
 import com.ict.erp.service.JoinInfoService;
 import com.ict.erp.vo.JoinInfo;
-import com.ict.erp.vo.JoinInfo2;
 
 @Service
 public class JoinInfoServiceImpl implements JoinInfoService {
@@ -32,7 +31,7 @@ public class JoinInfoServiceImpl implements JoinInfoService {
 	}
 	
 	@Override
-	public int updateJoinInfo(JoinInfo2 ji) {
+	public int updateJoinInfo(JoinInfo ji) {
 		return jidao.updateJoinInfo(ji);
 	}
 

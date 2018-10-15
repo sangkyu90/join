@@ -11,25 +11,14 @@ public class JoinInfo {
 	private String jiName;
 	private String jiEmail;
 	private String jiGender;
-	
 	private String jiBirth;
-	private String jiBirth1;
-	private String jiBirth2;
-	private String jiBirth3;
-	
 	private String jiMobile;
-	private String jiMobile1;
-	private String jiMobile2;
-	private String jiMobile3;
-	
 	private String jiAddress;
-
-	//	constructor	//
 	
+	//	constructor	//
 	public JoinInfo() {}
 	public JoinInfo(Integer jiNum, String jiId, String jiPwd, String jiLocal, String jiName, String jiEmail,
-			String jiGender, String jiBirth, String jiBirth1, String jiBirth2, String jiBirth3, String jiMobile,
-			String jiMobile1, String jiMobile2, String jiMobile3, String jiAddress) {
+			String jiGender, String jiBirth, String jiMobile, String jiAddress) {
 		super();
 		this.jiNum = jiNum;
 		this.jiId = jiId;
@@ -39,18 +28,10 @@ public class JoinInfo {
 		this.jiEmail = jiEmail;
 		this.jiGender = jiGender;
 		this.jiBirth = jiBirth;
-		this.jiBirth1 = jiBirth1;
-		this.jiBirth2 = jiBirth2;
-		this.jiBirth3 = jiBirth3;
 		this.jiMobile = jiMobile;
-		this.jiMobile1 = jiMobile1;
-		this.jiMobile2 = jiMobile2;
-		this.jiMobile3 = jiMobile3;
 		this.jiAddress = jiAddress;
 	}
-
-	//	getters&setters//
-
+	
 	public Integer getJiNum() {
 		return jiNum;
 	}
@@ -96,50 +77,14 @@ public class JoinInfo {
 	public String getJiBirth() {
 		return jiBirth;
 	}
-	public void setJiBirth(String jiBirth1,String jiBirth2,String jiBirth3) {
-		this.jiBirth = jiBirth1 + "-" + jiBirth2 + "-" + jiBirth3;
-	}
-	public String getJiBirth1() {
-		return jiBirth1;
-	}
-	public void setJiBirth1(String jiBirth1) {
-		this.jiBirth1 = jiBirth1;
-	}
-	public String getJiBirth2() {
-		return jiBirth2;
-	}
-	public void setJiBirth2(String jiBirth2) {
-		this.jiBirth2 = jiBirth2;
-	}
-	public String getJiBirth3() {
-		return jiBirth3;
-	}
-	public void setJiBirth3(String jiBirth3) {
-		this.jiBirth3 = jiBirth3;
+	public void setJiBirth(String jiBirth) {
+		this.jiBirth = jiBirth;
 	}
 	public String getJiMobile() {
 		return jiMobile;
 	}
-	public void setJiMobile(String jiMobile1,String jiMobile2,String jiMobile3) {
-		this.jiMobile = jiMobile1 + "-" + jiMobile2 + "-" + jiMobile3;
-	}
-	public String getJiMobile1() {
-		return jiMobile1;
-	}
-	public void setJiMobile1(String jiMobile1) {
-		this.jiMobile1 = jiMobile1;
-	}
-	public String getJiMobile2() {
-		return jiMobile2;
-	}
-	public void setJiMobile2(String jiMobile2) {
-		this.jiMobile2 = jiMobile2;
-	}
-	public String getJiMobile3() {
-		return jiMobile3;
-	}
-	public void setJiMobile3(String jiMobile3) {
-		this.jiMobile3 = jiMobile3;
+	public void setJiMobile(String jiMobile) {
+		this.jiMobile = jiMobile;
 	}
 	public String getJiAddress() {
 		return jiAddress;
@@ -151,11 +96,8 @@ public class JoinInfo {
 	@Override
 	public String toString() {
 		return "JoinInfo [jiNum=" + jiNum + ", jiId=" + jiId + ", jiPwd=" + jiPwd + ", jiLocal=" + jiLocal + ", jiName="
-				+ jiName + ", jiEmail=" + jiEmail + ", jiGender=" + jiGender + ", jiBirth=" + jiBirth + ", jiBirth1="
-				+ jiBirth1 + ", jiBirth2=" + jiBirth2 + ", jiBirth3=" + jiBirth3 + ", jiMobile=" + jiMobile
-				+ ", jiMobile1=" + jiMobile1 + ", jiMobile2=" + jiMobile2 + ", jiMobile3=" + jiMobile3 + ", jiAddress="
-				+ jiAddress + "]";
+				+ jiName + ", jiEmail=" + jiEmail + ", jiGender=" + jiGender + ", jiBirth=" + jiBirth + ", jiMobile="
+				+ jiMobile + ", jiAddress=" + jiAddress + "]";
 	}
-	
 	
 }

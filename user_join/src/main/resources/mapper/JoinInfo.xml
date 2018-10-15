@@ -27,7 +27,7 @@
 		#{jiBirth},	#{jiMobile}, #{jiAddress})
 	</insert>
 	
-	<update id="updateJoinInfo" parameterType="ji2">
+	<update id="updateJoinInfo" parameterType="ji">
   		update join_info
   	<set>
   		<if test="jiid!=null">jiId = #{jiId},</if>
