@@ -65,18 +65,17 @@ var AjaxUtil = function(conf){
 	}
 }
 
-window.addEventListener('load',initList);
+window.addEventListener('load',initInfo);
 
-function initInfo(){
+function initInfo(jiNum){
 	document.querySelector('#jiBody').innerHTML = '';
 	var conf = {
-			url : '/joinInfo',
+			url : '/updatelist/'+jiNum,
 			success : function(res){
 				res = JSON.parse(res);
 				var html = '';
 				for(var ji of res){
 					html += '<tr>';
-					html += '<td><input type="checkbox"></td>';
 					html += '<td>' + ji.jiNum + '</td>';
 					html += '<td>' + ji.jiId + '</td>';
 					html += '<td>' + ji.jiPwd + '</td>';
@@ -88,6 +87,20 @@ function initInfo(){
 					html += '<td>' + ji.jiAddress + '</td>';
 					html += '<td>' + ji.jiEmail + '</td>';
 					html += '<td><div class="btn_edit">Save</div></td>';
+					html += '</tr>';
+					html += '<tr class="table-row">';
+					html += '<td><input type="checkbox" id="jiNum'+ji.jiNum+'" value="'+ji.jiNum+'"></td>';
+					html += '<td>' + ji.jiNum + '</td>';
+					html += '<td><input type="text" id="jiId'+ji.jiNum+'" value="'+ji.jiId+'"></td>';
+					html += '<td><input type="text" id="jiPwd'+ji.jiNum+'" value="'+ji.jiPwd+'"></td>';
+					html += '<td><input type="text" id="jiName'+ji.jiNum+'" value="'+ji.jiName+'"></td>';
+					html += '<td><input type="text" id="jiBirth'+ji.jiNum+'" value="'+ji.jiBirth+'"></td>';
+					html += '<td class="jiGender"><input type="text" id="jiGender'+ji.jiNum+'" value="'+ji.jiGender+'"></td>';
+					html += '<td class="jiLocal"><input type="text" id="jiLocal'+ji.jiNum+'" value="'+ji.jiLocal+'"></td>';
+					html += '<td><input type="text" id="jiMobile'+ji.jiNum+'" value="'+ji.jiMobile+'"></td>';
+					html += '<td><input type="text" id="jiAddress'+ji.jiNum+'" value="'+ji.jiAddress+'"></td>';
+					html += '<td><input type="text" id="jiEmail'+ji.jiNum+'" value="'+ji.jiEmail+'"></td>';
+					html += '<td><div class="btn_edit" onclick="saveInfo('+ji.jiNum+')">Save</div></td>';
 					html += '</tr>';
 				} 
 				document.querySelector('#jiBody').insertAdjacentHTML('beforeend',html);
@@ -102,24 +115,15 @@ function initInfo(){
 <jsp:include page="common/header.jsp"></jsp:include>
     <div class="br-mainpanel">
       <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-        <h4 class="tx-gray-800 mg-b-5">Membership Information</h4>
-        <p class="mg-b-0">등록된 사용자를 관리할 수 있습니다</p>
+        <h4 class="tx-gray-800 mg-b-5">Modifying an Information</h4>
+        <p class="mg-b-0">사용자 정보를 수정할 수 있습니다</p>
       </div>
       <div class="br-pagebody">
         <div class="br-section-wrapper">
-          <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">User List</h6>
-          <div class="table-wrapper">
-			<div class="del-line">
-				<div class="del">삭제</div>
-				<div class="sch">
-					<input type="text" id="searchName" placeholder="이름으로 검색">
-					<img src="/resources/img/icon_search.png" onclick="search()">
-				</div>
-			</div>
+          <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">User Info</h6>
             <table id="datatable2" class="table display responsive nowrap">
               <thead>
                 <tr>
-				  <th class="wd-5p ck-all no-arrow"><input type="checkbox" name="allChk" onclick="allChk(this)"></th>
                   <th class="wd-5p">Num</th>
                   <th class="wd-10p">ID</th>
                   <th class="wd-10p">Password</th>
@@ -130,7 +134,7 @@ function initInfo(){
 				  <th class="wd-10p">Phone Number</th>
 				  <th class="wd-10p">Address</th>
                   <th class="wd-15p">E-mail</th>
-                  <th class="wd-5p no-arrow">Edit</th>
+                  <th class="wd-5p no-arrow">Save</th>
                 </tr>
               </thead>
               <tbody id="jiBody">
@@ -140,7 +144,6 @@ function initInfo(){
           </div>
         </div>
       </div>
-    </div>
 <jsp:include page="common/footer.jsp"></jsp:include>
 
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -158,11 +161,6 @@ function initInfo(){
     <script src="/resources/lib/select2/js/select2.min.js"></script>
     <script src="/resources/js/bracket.js"></script>
     <script>
-    function allChk(allChk){
-    	var allChk = allChk.checked;
-    	var allChkBox = document.querySelectorAll('input[type="checkbox"]');
-    	allChkBox.checked = allChk.checked;
-    }
     
       $(function(){
         'use strict';
@@ -171,8 +169,8 @@ function initInfo(){
           bLengthChange: false,
           searching: false,
           responsive: true,
-          info: true,
-          paging: true
+          info: false,
+          paging: false
         });
 
         // Select2

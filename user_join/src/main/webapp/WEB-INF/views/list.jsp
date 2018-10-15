@@ -7,7 +7,6 @@
   	
     <title>User Information</title>
 
-    <!-- vendor css -->
     <link href="/resources/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="/resources/lib/Ionicons/css/ionicons.css" rel="stylesheet">
     <link href="/resources/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
@@ -16,10 +15,10 @@
     <link href="/resources/lib/datatables/jquery.dataTables.css" rel="stylesheet">
     <link href="/resources/lib/select2/css/select2.min.css" rel="stylesheet">
 
-    <!-- Bracket CSS -->
     <link rel="stylesheet" href="/resources/css/bracket.css">
   </head>
   <style>
+  	#datatable2 .tableHead {text-align:center !important;}
   	th.no-arrow {background:none !important;}
   	table thead .no-arrow:before {content:none !important;width:0 !important;height:0 !important;}
   	table thead .no-arrow:after {content:none !important;width:0 !important;height:0 !important;}
@@ -83,18 +82,18 @@ function initList(){
 				var html = '';
 				for(var ji of res){
 					html += '<tr class="table-row">';
-					html += '<td><input type="checkbox" id="jiNum'+ji.jiNum+'" value="'+ji.jiNum+'"></td>';
+					html += '<td><input type="checkbox" name="check" id="jiNum'+ji.jiNum+'" value="'+ji.jiNum+'"></td>';
 					html += '<td>' + ji.jiNum + '</td>';
-					html += '<td><input type="text" id="jiId'+ji.jiNum+'" value="'+ji.jiId+'"></td>';
-					html += '<td><input type="text" id="jiPwd'+ji.jiNum+'" value="'+ji.jiPwd+'"></td>';
-					html += '<td><input type="text" id="jiName'+ji.jiNum+'" value="'+ji.jiName+'"></td>';
-					html += '<td><input type="text" id="jiBirth'+ji.jiNum+'" value="'+ji.jiBirth+'"></td>';
-					html += '<td class="jiGender"><input type="text" id="jiGender'+ji.jiNum+'" value="'+ji.jiGender+'"></td>';
-					html += '<td class="jiLocal"><input type="text" id="jiLocal'+ji.jiNum+'" value="'+ji.jiLocal+'"></td>';
-					html += '<td><input type="text" id="jiMobile'+ji.jiNum+'" value="'+ji.jiMobile+'"></td>';
-					html += '<td><input type="text" id="jiAddress'+ji.jiNum+'" value="'+ji.jiAddress+'"></td>';
-					html += '<td><input type="text" id="jiEmail'+ji.jiNum+'" value="'+ji.jiEmail+'"></td>';
-					html += '<td><div class="btn_edit" onclick="saveInfo('+ji.jiNum+')">Save</div></td>';
+					html += '<td>'+ji.jiId+'</td>';
+					html += '<td>'+ji.jiPwd+'</td>';
+					html += '<td>'+ji.jiName+'</td>';
+					html += '<td>'+ji.jiBirth+'</td>';
+					html += '<td>'+ji.jiGender+'</td>';
+					html += '<td>'+ji.jiLocal+'</td>';
+					html += '<td>'+ji.jiMobile+'</td>';
+					html += '<td>'+ji.jiAddress+'</td>';
+					html += '<td>'+ji.jiEmail+'</td>';
+					html += '<td><button type="button" onclick="updateInfo('+ji.jiNum+')">Edit</button></td>';
 					html += '</tr>';
 				} 
 				document.querySelector('#jiBody').insertAdjacentHTML('beforeend',html);
@@ -104,45 +103,71 @@ function initList(){
 	au.send();
 }
 
-function saveInfo(jiNum){
-	var jiId = document.querySelector('#jiId'+jiNum).value;
-	var jiPwd = document.querySelector('#jiPwd'+jiNum).value;
-	var jiName = document.querySelector('#jiName'+jiNum).value;
-	var jiBirth = document.querySelector('#jiBirth'+jiNum).value;
-	var jiMobile = document.querySelector('#jiMobile'+jiNum).value;
-	var jiAddress = document.querySelector('#jiAddress'+jiNum).value;
-	var jiEmail = document.querySelector('#jiEmail'+jiNum).value;
-	var jiGender = document.querySelector('#jiGender'+jiNum).value;
-	var jiLocal = document.querySelector('#jiLocal'+jiNum).value;
-	var	params = {jiNum:jiNum,
-			jiId:jiId,
-			jiPwd:jiPwd,
-			jiName:jiName,
-			jiBirth:jiBirth,
-			jiMobile:jiMobile,
-			jiAddress:jiAddress,
-			jiEmail:jiEmail,
-			jiGender:jiGender,
-			jiLocal:jiLocal};
-	params = JSON.stringify(params);
-	
+function updateInfo(jiNum){
+	document.querySelector('#jiBody').innerHTML = '';
+	document.querySelector('#jiHead').innerHTML = '';
 	var conf = {
-			url : '/joininfo/'+jiNum,
-			method : 'PUT',
-			param : params,
+			url : '/infolist/'+jiNum,
 			success : function(res){
-				alert(res);
+				res = JSON.parse(res);
+				var html = '';
+					html += '<tr class="table-row" name="table-row">';
+					html += '<td>' + res.jiNum + '</td>';
+					html += '<td><input type="text" id="jiId'+res.jiNum+'" value="'+res.jiId+'"></td>';
+					html += '<td><input type="text" id="jiPwd'+res.jiNum+'" value="'+res.jiPwd+'"></td>';
+					html += '<td><input type="text" id="jiName'+res.jiNum+'" value="'+res.jiName+'"></td>';
+					html += '<td><input type="text" id="jiBirth'+res.jiNum+'" value="'+res.jiBirth+'"></td>';
+					html += '<td class="jiGender"><input type="text" id="jiGender'+res.jiNum+'" value="'+res.jiGender+'"></td>';
+					html += '<td class="jiLocal"><input type="text" id="jiLocal'+res.jiNum+'" value="'+res.jiLocal+'"></td>';
+					html += '<td><input type="text" id="jiMobile'+res.jiNum+'" value="'+res.jiMobile+'"></td>';
+					html += '<td><input type="text" id="jiAddress'+res.jiNum+'" value="'+res.jiAddress+'"></td>';
+					html += '<td><input type="text" id="jiEmail'+res.jiNum+'" value="'+res.jiEmail+'"></td>';
+					html += '<td><div class="btn_edit" onclick="saveInfo('+res.jiNum+')">Save</div></td>';
+					html += '</tr>';
+				document.querySelector('#jiBody').insertAdjacentHTML('beforeend',html);
+				var head = '';
+					head += '<tr>';
+					head += '<th class="wd-5p">Num</th>';
+					head += '<th class="wd-10p">ID</th>';
+					head += '<th class="wd-10p">Password</th>';
+					head += '<th class="wd-10p">Name</th>';
+					head += '<th class="wd-10p">Date of birth</th>';
+					head += '<th class="wd-10p">Gender</th>';
+					head += '<th class="wd-10p">Nationality</th>';
+					head += '<th class="wd-10p">Phone Number</th>';
+					head += '<th class="wd-10p">Address</th>';
+					head += '<th class="wd-15p">E-mail</th>';
+					head += '<th class="wd-5p">Save</th>';
+					head += '</tr>';
+				document.querySelector('#jiHead').insertAdjacentHTML('beforeend',head);
 			}
 	}
-	
 	var au = new AjaxUtil(conf);
 	au.send();
+}
+
+function allChk(allChk){
+	var checkboxes = document.querySelector('input[name=check]');
+	var rowCnt = checkboxes.length - 1;
+	var allChk = allChk.checked;
+	if(allChk){		
+		for(var i=0; i<=rowCnt; i++){
+			if(checkboxes[i].type == 'checkbox'){
+				checkboxes[i].checked = true;
+			}
+		}
+	}else {
+		for(var i=0; i<=rowCnt; i++){
+			if(checkboxes[i].type == 'checkbox'){
+				checkboxes[i].checked = false;
+			}
+		}
+	}
 }
 </script>
 
 <body>
 <jsp:include page="common/header.jsp"></jsp:include>
-    <!-- ########## START: MAIN PANEL ########## -->
     <div class="br-mainpanel">
       <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
         <h4 class="tx-gray-800 mg-b-5">Membership Information</h4>
@@ -160,9 +185,9 @@ function saveInfo(jiNum){
 				</div>
 			</div>
             <table id="datatable2" class="table display responsive nowrap">
-              <thead>
+              <thead id="jiHead" class="tableHead">
                 <tr>
-				  <th class="wd-5p ck-all no-arrow"><input type="checkbox" name="allChk" onclick="allChk(this)"></th>
+				  <th class="wd-5p"><input type="checkbox" onclick="allChk(this)"></th>
                   <th class="wd-5p">Num</th>
                   <th class="wd-10p">ID</th>
                   <th class="wd-10p">Password</th>
@@ -173,18 +198,17 @@ function saveInfo(jiNum){
 				  <th class="wd-10p">Phone Number</th>
 				  <th class="wd-10p">Address</th>
                   <th class="wd-15p">E-mail</th>
-                  <th class="wd-5p no-arrow">Edit</th>
+                  <th class="wd-5p">Edit</th>
                 </tr>
               </thead>
               <tbody id="jiBody">
               
               </tbody>
             </table>
-          </div><!-- table-wrapper -->
-        </div><!-- br-section-wrapper -->
-      </div><!-- br-pagebody -->
-    </div><!-- br-mainpanel -->
-    <!-- ########## END: MAIN PANEL ########## -->
+          </div>
+        </div>
+      </div>
+    </div>
 <jsp:include page="common/footer.jsp"></jsp:include>
 
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -202,8 +226,8 @@ function saveInfo(jiNum){
     <script src="/resources/lib/select2/js/select2.min.js"></script>
     <script src="/resources/js/bracket.js"></script>
     <script>
-    
-      $(function(){
+
+ <%--     $(function(){
         'use strict';
 
         $('#datatable2').DataTable({
@@ -217,7 +241,7 @@ function saveInfo(jiNum){
         // Select2
         $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
-      }
+      } --%>
     </script>
   </body>
 </html>

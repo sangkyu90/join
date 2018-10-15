@@ -40,14 +40,15 @@ public class JoinInfoController {
 //	}
 	
 	//select one
-	@RequestMapping(value="/updatelist/{jiNum}",method=RequestMethod.GET)
+	@RequestMapping(value="/infolist/{jiNum}",method=RequestMethod.GET)
 	@ResponseBody
-	public JoinInfo getJoinInfo(@ModelAttribute JoinInfo ji) {
+	public JoinInfo getJoinInfo(@ModelAttribute JoinInfo ji,@PathVariable Integer jiNum) {
+		ji.setJiNum(jiNum);
 		return jis.getJoinInfo(ji);	
 	}
 	
 	//update
-	@RequestMapping(value="/updatelist/{jiNum}",method=RequestMethod.PUT)
+	@RequestMapping(value="/updateinfo/{jiNum}",method=RequestMethod.PUT)
 	@ResponseBody
 	public Integer updateJoinInfo(@RequestBody JoinInfo ji,@PathVariable Integer jiNum) {
 		ji.setJiNum(jiNum);
