@@ -45,7 +45,7 @@
           <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">User List</h6>
           <div class="table-wrapper">
 			<div class="del-line">
-				<div class="del">삭제</div>
+				<div class="del" onclick="deleteInfo()">삭제</div>
 				<div class="sch">
 					<input type="text" id="searchName" placeholder="이름으로 검색">
 					<img src="/resources/img/icon_search.png" onclick="search()">
@@ -221,6 +221,22 @@ function saveInfo(jiNum){
 					location.href="/url/list";
 				}
 		}
+	}
+	var au = new AjaxUtil(conf);
+	au.send();
+}
+
+function deleteInfo(){
+	var deleteNum = document.querySelector('input[type=checkbox]:checked').value;
+	var conf = {
+			url : '/deleteinfo/' + deleteNum,
+			method : 'DELETE',
+			success : function(res){
+				if(res=='1'){
+					alert('삭제완료');
+					initList();
+				}
+			}
 	}
 	var au = new AjaxUtil(conf);
 	au.send();
