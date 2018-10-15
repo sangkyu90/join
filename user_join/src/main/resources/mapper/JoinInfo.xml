@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SQL.JOININFO">
+	<select id="selectJoinInfoList" resultType="ji">
+		select * from join_info order by jiNum
+	</select>
+
+	<select id="selectJoinInfo" resultType="ji">
+		select * from join_info
+		<where>
+			<if test="jiNum!=null">
+			jiNum = #{jiNum}
+			</if>
+			<if test="jiName!=null">
+			jiName like '%'||#{jiName}||'%'
+			</if>
+		</where>
+	</select>
+
+	<insert id="insertJoinInfo" parameterType="ji">
+		insert into
+		join_info(jiNum, jiId, jiPwd, jiLocal, jiName, jiEmail,
+		jiGender, jiBirth, jiMobile, jiAddress)
+		values(seq_jinum.nextval, #{jiId}, #{jiPwd}, #{jiLocal}, #{jiName}, #{jiEmail}, #{jiGender},
+		#{jiBirth},	#{jiMobile}, #{jiAddress})
+	</insert>
+	
+	<update id="updateJoinInfo" parameterType="ji2">
+  		update join_info
+  	<set>
+  		<if test="jiid!=null">jiId = #{jiId},</if>
+  		<if test="jipwd!=null">jiPwd = #{jiPwd},</if>
+  		<if test="jilocal!=null">jiLocal = #{jiLocal},</if>
+  		<if test="jiname!=null">jiName = #{jiName},</if>
+  		<if test="jiemail!=null">jiEmail = #{jiEmail},</if>
+  		<if test="jigender!=null">jiGender = #{jiGender},</if>
+  		<if test="jibirth!=null">jiBirth = #{jiBirth},</if>
+  		<if test="jimobile!=null">jiMobile = #{jiMobile},</if>
+  		<if test="jiaddress!=null">jiAddress = #{jiAddress}</if>
+  	</set>
+  		where jiNum=#{jiNum}
+  </update>
+
+  <delete id="deleteJoinInfo" parameterType="int">
+  	delete from join_info
+  	where jiNum=#{jiNum}
+  </delete>
+  
+  <select id="login" resultType="ji">
+  	select * from join_info
+  		<where>
+  			jiId = #{jiId} and jiPwd = #{jiPwd}
+  		</where>
+  </select>
+</mapper>
