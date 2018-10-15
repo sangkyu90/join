@@ -295,5 +295,20 @@ function allChk(allChk){
 }
 </script>
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="/resources/lib/jquery/jquery.js"></script>
+<script src="/resources/lib/popper.js/popper.js"></script>
+<script src="/resources/lib/bootstrap/bootstrap.js"></script>
+<script src="/resources/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+<script src="/resources/lib/moment/moment.js"></script>
+<script src="/resources/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/resources/lib/jquery-switchbutton/jquery.switchButton.js"></script>
+<script src="/resources/lib/peity/jquery.peity.js"></script>
+<script src="/resources/lib/highlightjs/highlight.pack.js"></script>
+<script src="/resources/lib/datatables/jquery.dataTables.js"></script>
+<script src="/resources/lib/datatables-responsive/dataTables.responsive.js"></script>
+<script src="/resources/lib/select2/js/select2.min.js"></script>	
+<script src="/resources/js/bracket.js"></script>
+
 </body>
 </html>
