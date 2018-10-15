@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
           <input type="password" class="form-control" name="jiPwd" placeholder="비밀번호를 입력해주세요.">
-<%--	  <input type="password" class="form-control mg-t-10" name="jiPwdConf" placeholder="비밀번호를 한번 더 입력해주세요.">  --%>
+		  <input type="password" class="form-control mg-t-10" name="jiPwdConf" placeholder="비밀번호를 한번 더 입력해주세요.">
 		</div>
 		<div class="form-group">
           <input type="text" class="form-control" name="jiName" placeholder="이름을 입력해주세요.">

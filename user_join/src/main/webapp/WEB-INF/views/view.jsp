@@ -7,7 +7,6 @@
   	
     <title>User Information</title>
 
-    <!-- vendor css -->
     <link href="/resources/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="/resources/lib/Ionicons/css/ionicons.css" rel="stylesheet">
     <link href="/resources/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
@@ -15,8 +14,6 @@
     <link href="/resources/lib/highlightjs/github.css" rel="stylesheet">
     <link href="/resources/lib/datatables/jquery.dataTables.css" rel="stylesheet">
     <link href="/resources/lib/select2/css/select2.min.css" rel="stylesheet">
-
-    <!-- Bracket CSS -->
     <link rel="stylesheet" href="/resources/css/bracket.css">
   </head>
   <style>
@@ -103,7 +100,6 @@ function initInfo(){
 
 <body>
 <jsp:include page="common/header.jsp"></jsp:include>
-    <!-- ########## START: MAIN PANEL ########## -->
     <div class="br-mainpanel">
       <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
         <h4 class="tx-gray-800 mg-b-5">Membership Information</h4>
@@ -141,11 +137,10 @@ function initInfo(){
               
               </tbody>
             </table>
-          </div><!-- table-wrapper -->
-        </div><!-- br-section-wrapper -->
-      </div><!-- br-pagebody -->
-    </div><!-- br-mainpanel -->
-    <!-- ########## END: MAIN PANEL ########## -->
+          </div>
+        </div>
+      </div>
+    </div>
 <jsp:include page="common/footer.jsp"></jsp:include>
 
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
