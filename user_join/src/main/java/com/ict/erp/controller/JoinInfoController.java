@@ -29,12 +29,6 @@ public class JoinInfoController {
 	return jis.getJoinInfoList(ji);
 	}
 	
-	//select one
-	@RequestMapping(value="/infolist/{jiNum}",method=RequestMethod.GET)
-	@ResponseBody
-	public JoinInfo getJoinInfo(@ModelAttribute JoinInfo ji) {
-	return jis.getJoinInfo(ji);	
-	}
 	
 	//search
 //	@RequestMapping(value="/search/{jiName}",method=RequestMethod.GET)
@@ -45,8 +39,15 @@ public class JoinInfoController {
 //	return jis.getJoinInfo(ji);
 //	}
 	
+	//select one
+	@RequestMapping(value="/updatelist/{jiNum}",method=RequestMethod.GET)
+	@ResponseBody
+	public JoinInfo getJoinInfo(@ModelAttribute JoinInfo ji) {
+		return jis.getJoinInfo(ji);	
+	}
+	
 	//update
-	@RequestMapping(value="/infolist/{jiNum}",method=RequestMethod.PUT)
+	@RequestMapping(value="/updatelist/{jiNum}",method=RequestMethod.PUT)
 	@ResponseBody
 	public Integer updateJoinInfo(@RequestBody JoinInfo ji,@PathVariable Integer jiNum) {
 		ji.setJiNum(jiNum);
@@ -54,7 +55,7 @@ public class JoinInfoController {
 	}
 	
 	//delete
-	@RequestMapping(value="/joininfo/{jiNum}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/deleteinfo/{jiNum}",method=RequestMethod.DELETE)
 	@ResponseBody
 	public String  deleteJoinInfo(@PathVariable int jiNum) {
 		return jis.deleteJoinInfo(jiNum)+"";
