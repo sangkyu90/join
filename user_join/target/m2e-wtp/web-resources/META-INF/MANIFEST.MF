@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: koitt-03-A
+Built-By: ￬ﾞﾥ￫ﾌﾀ￬ﾘﾁ
 Build-Jdk: 1.8.0_171
 Created-By: Maven Integration for Eclipse
 

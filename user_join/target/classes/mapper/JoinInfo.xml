@@ -30,15 +30,15 @@
 	<update id="updateJoinInfo" parameterType="ji">
   		update join_info
   	<set>
-  		<if test="jiid!=null">jiId = #{jiId},</if>
-  		<if test="jipwd!=null">jiPwd = #{jiPwd},</if>
-  		<if test="jilocal!=null">jiLocal = #{jiLocal},</if>
-  		<if test="jiname!=null">jiName = #{jiName},</if>
-  		<if test="jiemail!=null">jiEmail = #{jiEmail},</if>
-  		<if test="jigender!=null">jiGender = #{jiGender},</if>
-  		<if test="jibirth!=null">jiBirth = #{jiBirth},</if>
-  		<if test="jimobile!=null">jiMobile = #{jiMobile},</if>
-  		<if test="jiaddress!=null">jiAddress = #{jiAddress}</if>
+  		<if test="jiId!=null">jiId = #{jiId},</if>
+  		<if test="jiPwd!=null">jiPwd = #{jiPwd},</if>
+  		<if test="jiLocal!=null">jiLocal = #{jiLocal},</if>
+  		<if test="jiName!=null">jiName = #{jiName},</if>
+  		<if test="jiEmail!=null">jiEmail = #{jiEmail},</if>
+  		<if test="jiGender!=null">jiGender = #{jiGender},</if>
+  		<if test="jiBirth!=null">jiBirth = #{jiBirth},</if>
+  		<if test="jiMobile!=null">jiMobile = #{jiMobile},</if>
+  		<if test="jiAddress!=null">jiAddress = #{jiAddress}</if>
   	</set>
   		where jiNum=#{jiNum}
   </update>
