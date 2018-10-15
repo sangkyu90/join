@@ -48,7 +48,7 @@
 				<div class="del" onclick="deleteInfo()">삭제</div>
 				<div class="sch">
 					<input type="text" id="searchName" placeholder="이름으로 검색">
-					<img src="/resources/img/icon_search.png" onclick="search()">
+					<img src="/resources/img/icon_search.png" onclick="searchName()">
 				</div>
 			</div>
             <table id="datatable2" class="table display responsive nowrap">
@@ -236,6 +236,38 @@ function deleteInfo(){
 					alert('삭제완료');
 					initList();
 				}
+			}
+	}
+	var au = new AjaxUtil(conf);
+	au.send();
+}
+
+function searchName(){
+	document.querySelector('#jiBody').innerHTML = '';
+	var jiName = document.querySelector('#searchName').value;
+	var conf = {
+			url : '/search/' + jiName,
+			method : 'GET',
+			success : function(res){
+				res = JSON.parse(res);
+				var html = '';
+				for(var ji of res){
+					html += '<tr class="table-row">';
+					html += '<td><input type="checkbox" id="check" value="'+ji.jiNum+'"></td>';
+					html += '<td>' + ji.jiNum + '</td>';
+					html += '<td>'+ji.jiId+'</td>';
+					html += '<td>'+ji.jiPwd+'</td>';
+					html += '<td>'+ji.jiName+'</td>';
+					html += '<td>'+ji.jiBirth+'</td>';
+					html += '<td>'+ji.jiGender+'</td>';
+					html += '<td>'+ji.jiLocal+'</td>';
+					html += '<td>'+ji.jiMobile+'</td>';
+					html += '<td>'+ji.jiAddress+'</td>';
+					html += '<td>'+ji.jiEmail+'</td>';
+					html += '<td><button type="button" onclick="updateInfo('+ji.jiNum+')">Edit</button></td>';
+					html += '</tr>';
+				} 
+				document.querySelector('#jiBody').insertAdjacentHTML('beforeend',html);
 			}
 	}
 	var au = new AjaxUtil(conf);

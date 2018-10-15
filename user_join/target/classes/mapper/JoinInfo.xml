@@ -3,8 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SQL.JOININFO">
+
 	<select id="selectJoinInfoList" resultType="ji">
-		select * from join_info order by jiNum
+		select * from join_info
+		<where>
+			<if test="jiName!=null">
+			jiName like '%'||#{jiName}||'%'
+			</if>
+		</where>
+		order by jiNum
 	</select>
 
 	<select id="selectJoinInfo" resultType="ji">
@@ -12,9 +19,6 @@
 		<where>
 			<if test="jiNum!=null">
 			jiNum = #{jiNum}
-			</if>
-			<if test="jiName!=null">
-			jiName like '%'||#{jiName}||'%'
 			</if>
 		</where>
 	</select>
@@ -54,4 +58,5 @@
   			jiId = #{jiId} and jiPwd = #{jiPwd}
   		</where>
   </select>
+  
 </mapper>

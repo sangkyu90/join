@@ -29,16 +29,6 @@ public class JoinInfoController {
 	return jis.getJoinInfoList(ji);
 	}
 	
-	
-	//search
-//	@RequestMapping(value="/search/{jiName}",method=RequestMethod.GET)
-//	@ResponseBody
-//	public JoinInfo getSearchResult(@PathVariable String jiName) {
-//		JoinInfo ji = new JoinInfo();
-//		ji.setJiName(jiName);
-//	return jis.getJoinInfo(ji);
-//	}
-	
 	//select one
 	@RequestMapping(value="/infolist/{jiNum}",method=RequestMethod.GET)
 	@ResponseBody
@@ -46,6 +36,15 @@ public class JoinInfoController {
 		ji.setJiNum(jiNum);
 		return jis.getJoinInfo(ji);	
 	}
+	
+	//search
+	@RequestMapping(value="/search/{jiName}",method=RequestMethod.GET)
+	@ResponseBody
+	public List<JoinInfo> getSearchResult(@ModelAttribute JoinInfo ji,@PathVariable String jiName) {
+		ji.setJiName(jiName);
+	return jis.getJoinInfoList(ji);
+	}
+	
 	
 	//update
 	@RequestMapping(value="/updateinfo/{jiNum}",method=RequestMethod.PUT)
